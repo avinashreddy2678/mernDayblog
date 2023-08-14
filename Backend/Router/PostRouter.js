@@ -53,6 +53,18 @@ router.get("/update/:postid",async (req,res)=>{
   res.json({singlePost});
 
 })
+router.patch("/update/:postid",async (req,res)=>{
+  const postId=req.params.postid;
+  // const singlePost=await PostModal.filter({_id:postId});
+  const filter={_id:postId};
+  // singlePost.title=req.body.title,
+  // singlePost.post=req.body.post,
+    const update={$set:{title:req.body.title,post:req.body.post}};
+    const result=await PostModal.updateOne(filter,update);
+
+  res.json({result});
+
+})
 
 
 router.patch("/update/:postid", async (req, res) => {

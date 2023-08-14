@@ -32,11 +32,10 @@ function Modalops({
   // console.log(id);
   
   useEffect(() => {
-    console.log(singlepost);
-    if (!home) {
+    if (!home&&singlepost!==undefined) {
       setpostText({
-        // title: singlepost.title,
-        // post: singlepost.post,
+        title: singlepost.title,
+        post: singlepost.post,
       });
     }
   }, [singlepost]);
@@ -49,15 +48,25 @@ function Modalops({
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-
+    if(home){
     axios.post("http://localhost:5000/posts/Home", {
       title: postText.title,
       post: postText.post,
       author: window.localStorage.getItem("name"),
     });
+  }
+  else{
+    let myid= window.localStorage.getItem("postid");
+    axios.patch(`http://localhost:5000/posts/update/${myid}`, {
+      title: postText.title,
+      post: postText.post,
+      author: window.localStorage.getItem("name"),
+    });
+  }
     handlePost();
     handleclose();
   };
+
 
   useEffect(() => handlePostData(finalpost), [finalpost]);
   return (

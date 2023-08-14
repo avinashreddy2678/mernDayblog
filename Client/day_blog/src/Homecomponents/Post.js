@@ -24,7 +24,7 @@ function Post({ item, mypost }) {
       `http://localhost:5000/posts/update/${myid}`
     );
     // console.log(editdata.data);
-    setsinglepost(editdata.data);
+    setsinglepost(editdata.data.singlePost[0]);
    await setopen(true);
   };
   const handleclose = () => {
@@ -36,6 +36,7 @@ function Post({ item, mypost }) {
   const handlepost = (postAr) => {
     
   };
+  
 
   return (
     <>
