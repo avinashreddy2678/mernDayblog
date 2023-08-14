@@ -1,0 +1,84 @@
+.modals{
+    position: fixed;
+    background-color: rgba(0, 0, 0,0.8);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.modalcontent{
+    color: black;
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 66%;
+    border-radius:20px ;
+    text-align:justify;
+    padding: 20px;
+}
+.navb{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left{
+    display: flex;
+    
+    align-items: center;
+}
+.left h4{
+    
+    margin: 0;
+}
+.left .para{
+    margin: 0;
+    
+}
+.closebtn{
+    background: none;
+    color: rgb(0, 0, 0);
+    border: none;
+    outline: none;
+    padding: 0;
+}
+textarea{
+    border: none;
+    margin-top: 3%;
+    width: 100%;
+   height: 240px;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    font-size: x-large;
+}
+.bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bottomleft{
+    display: flex;
+    padding-right: 20px;
+}
+.modalicons{
+    padding: 15px 15px;
+    border: 1px solid rgb(229, 227, 227);
+    border-radius:50% ;
+    margin: 0 10px;
+    background-color: rgb(216, 216, 216);
+    cursor: pointer;
+}
+.Maincontainer input{
+    border: none;
+    width: 100%;
+    margin-bottom: 3%;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    font-size: x-large;
+}

@@ -1,0 +1,97 @@
+.login{
+    width: 99vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.header{
+   margin: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.header .left img{
+    height: 70px;
+    width: 140px;
+    cursor: pointer;
+}
+.left button{
+    margin: 0 0.6rem;
+    outline: none;
+    padding: 8px 18px;
+    background-color: transparent;
+    
+    cursor: pointer;
+}
+.signinbtn{
+    border: 2px solid rgb(0, 200, 255);
+    color: rgb(25, 179, 221);
+    border-top-left-radius: 50px; 
+    border-bottom-left-radius: 50px; 
+    border-top-right-radius: 50px; 
+    border-bottom-right-radius: 50px;
+    
+    font-weight: bolder;
+}
+.signinbtn:hover{
+    color: white;
+    background-color: rgb(25, 179, 221);
+}
+.joinbtn{
+    border: none;
+    font-weight: bolder;
+    color: rgb(105, 101, 101);
+}
+
+.backgroundimg img{
+    width: 100vw;
+    opacity: 0.7;
+}
+.backgroundimg{
+    position: relative;
+}
+.main-content {
+    position: absolute;
+    top: 25%;
+    left: 17%;
+    max-width: 42%;
+}
+.main-content .title{
+    font-weight: lighter;
+    font-size: 49px;
+    color: rgb(25, 179, 221);
+    padding-left: 10%;
+}
+.googleloginbtn{
+    padding-top: 13%;
+    padding-left: 10%;
+    
+}
+.googleloginbtn button{
+    width: 24vw;
+    height: 6vh;
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    border-top-left-radius: 50px; 
+    border-bottom-left-radius: 50px; 
+    border-top-right-radius: 50px; 
+    border-bottom-right-radius: 50px;
+    background-color:white ;
+    font-size: medium;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+.googleloginbtn button:hover{
+    background-color: rgb(226, 226, 226);
+    
+}
+.googleloginbtn button img{
+    width: 18px;
+    height: 18px;
+    padding: 0 10px;
+    border-radius: 50%;
+}
