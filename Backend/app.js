@@ -1,11 +1,13 @@
 // server.js
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import Cors from 'cors';
 import { userrouter } from './Router/UserRouter.js';
 import { postrouter } from './Router/PostRouter.js';
+dotenv.config();
 const app = express();
-mongoose.connect('mongodb+srv://avinashreddie777:ZPNDnzyuaGU8jOjU@cluster0.nwjrlfp.mongodb.net/BlogDatabase');
+mongoose.connect(process.env.MONGODB);
 
 app.use(Cors())
 app.use(express.json());
@@ -14,6 +16,6 @@ app.use("/auth",userrouter);
 
 
 
-app.listen('5000',()=>{
+app.listen(process.env.PORT,()=>{
         console.log("server running");
 })

@@ -2,11 +2,11 @@ import express from "express";
 import { UserModal } from "../Models/User.js";
 import  jwt  from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
+import dotenv from 'dotenv';
 const router = express.Router();
 const saltRounds = 10;
 
-
+dotenv.config();
 router.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
     bcrypt.hash(password, saltRounds, function(err, hash) {
@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
         }
     
         console.log("User logged in successfully");
-        const token=jwt.sign({id:user._id},"secreat");
+        const token=jwt.sign({id:user._id},process.env.MYSECREAT);
         res.json({token,Userid:user._id,name:user.username,message:"User logged in successfully"});
     });
     
@@ -56,7 +56,7 @@ export const verifyToken=(req,res,next)=>{
     const token =req.headers.authorization;   
     if(token){
         
-    jwt.verify(token,"secreat",(err)=>{
+    jwt.verify(token,process.env.MYSECREAT,(err)=>{
         if(err){
             return res.sendStatus(404);
         }
