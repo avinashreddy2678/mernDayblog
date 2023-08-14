@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Modalops from "./Modalops";
 import axios from "axios";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import { useCookies } from "react-cookie";
 function Post({ item, mypost }) {
   const [cookies, Setcookiet] = useCookies(["access_token"]);
@@ -45,12 +48,14 @@ function Post({ item, mypost }) {
         <p>{item.post}</p>
         <h6 style={{ float: "right", marginRight: "10%" }}>-{item.author}</h6>
         <h6>{item.date}</h6>
+        <div className="icons d-flex py-3">
         {mypost ? (
-          <p onClick={() => handledeletepostid(item._id)}>delete</p>
+          <p  className="px-3" onClick={() => handledeletepostid(item._id)}><DeleteIcon /></p>
         ) : (
           <p> </p>
         )}
-        {mypost ? <p onClick={() => handleedit(item._id)}>edit</p> : <p> </p>}
+        {mypost ? <p className="px-2" onClick={() => handleedit(item._id)}><EditIcon /></p> : <p> </p>}
+        </div>
         <Modalops
           open={open}
           handleclose={handleclose}

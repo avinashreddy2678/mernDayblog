@@ -47,7 +47,6 @@ function Home() {
     window.localStorage.removeItem("name");
     navigate("/");
   };
- 
 
   return (
     <div className="homebackground">
