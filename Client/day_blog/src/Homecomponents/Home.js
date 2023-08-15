@@ -5,6 +5,7 @@ import Modalops from "./Modalops";
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BASEURL } from "../helper";
 function Home() {
   let userid = window.localStorage.getItem("name");
   const [mydata, setdata] = useState([]);
@@ -16,7 +17,7 @@ function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/posts/Home", {
+        const response = await axios.get(`${BASEURL}/posts/Home`, {
           headers: { authorization: cookies.access_token },
         });
         setdata(response.data.response);

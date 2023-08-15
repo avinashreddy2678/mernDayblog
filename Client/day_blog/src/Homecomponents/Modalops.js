@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "@mui/material/Modal";
 import "./modalops.css";
 import axios from "axios";
+import { BASEURL } from "../helper";
 
 function Modalops({
   open,
@@ -49,7 +50,7 @@ function Modalops({
   const handlesubmit = async (e) => {
     e.preventDefault();
     if(home){
-    axios.post("http://localhost:5000/posts/Home", {
+    axios.post(`${BASEURL}/posts/Home`, {
       title: postText.title,
       post: postText.post,
       author: window.localStorage.getItem("name"),
@@ -57,7 +58,7 @@ function Modalops({
   }
   else{
     let myid= window.localStorage.getItem("postid");
-    axios.patch(`http://localhost:5000/posts/update/${myid}`, {
+    axios.patch(`${BASEURL}/posts/update/${myid}`, {
       title: postText.title,
       post: postText.post,
       author: window.localStorage.getItem("name"),

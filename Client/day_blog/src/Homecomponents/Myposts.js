@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { BASEURL } from "../helper";
 
 function Myposts() {
   const [data, setdata] = useState([]);
@@ -16,7 +17,7 @@ function Myposts() {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/posts/mypost/${userid}`, {
+        const response = await axios.get(`${BASEURL}/posts/mypost/${userid}`, {
           headers: { authorization: cookies.access_token }
         });
         setdata(response.data.response);

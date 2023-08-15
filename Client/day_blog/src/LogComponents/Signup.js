@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Signup.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { BASEURL } from "../helper";
 function Signup() {
   let navigate = useNavigate();
   const [email, setemail] = useState("");
@@ -26,7 +27,7 @@ function Signup() {
     e.preventDefault();
     if (password === confirmpassword) {
       try {
-        const response = await axios.post("http://localhost:5000/auth/signup", {
+        const response = await axios.post(`${BASEURL}/auth/signup`, {
           username,
           email,
           password,

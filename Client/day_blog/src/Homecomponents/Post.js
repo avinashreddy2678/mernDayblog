@@ -5,6 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useCookies } from "react-cookie";
+import { BASEURL } from "../helper";
 function Post({ item, mypost }) {
   const [cookies, Setcookiet] = useCookies(["access_token"]);
   const [singlepost,setsinglepost]=useState();
@@ -12,7 +13,7 @@ function Post({ item, mypost }) {
   const handledeletepostid = async (postid) => {
     const fetchPosts = async () => {
       try {
-        await axios.delete(`http://localhost:5000/posts/delete/${postid}`, {
+        await axios.delete(`${BASEURL}/posts/delete/${postid}`, {
           headers: { authorization: cookies.access_token },
         });
       } catch (error) {}
@@ -24,7 +25,7 @@ function Post({ item, mypost }) {
 
     // let id = window.localStorage.getItem("postid");
     const editdata = await axios.get(
-      `http://localhost:5000/posts/update/${myid}`
+      `${BASEURL}/posts/update/${myid}`
     );
     // console.log(editdata.data);
     setsinglepost(editdata.data.singlePost[0]);

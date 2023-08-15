@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useCookies} from 'react-cookie';
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
+import { BASEURL } from '../helper';
 function Login() {
   let navigate=useNavigate();
   const [email,setemail]=useState('');
@@ -18,7 +19,7 @@ function Login() {
  const  onSubmit=async (e)=>{
       e.preventDefault();
       try{
-   let response=await axios.post("http://localhost:5000/auth/login",{
+   let response=await axios.post(`${BASEURL}/auth/login`,{
           email,password
       });
       if(response.data.Userid){
