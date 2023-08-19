@@ -7,7 +7,7 @@ import { userrouter } from './Router/UserRouter.js';
 import { postrouter } from './Router/PostRouter.js';
 dotenv.config();
 const app = express();
-mongoose.connect("mongodb://localhost:27017/BlogDatabase");
+mongoose.connect(process.env.MONGODB);
 
 app.use(Cors())
 app.use(express.json());
