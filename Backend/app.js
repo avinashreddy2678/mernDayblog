@@ -6,8 +6,8 @@ import Cors from 'cors';
 import { userrouter } from './Router/UserRouter.js';
 import { postrouter } from './Router/PostRouter.js';
 dotenv.config();
-const app = express();
-mongoose.connect(process.env.MONGODB);
+const app = express(); 
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
 
 app.use(Cors())
 app.use(express.json());
