@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
         }
     
         console.log("User logged in successfully");
-        const token=jwt.sign({id:user._id},process.env.MYSECREAT);
+        const token=jwt.sign({id:user._id},"process.env.MYSECREAT");
         res.json({token,Userid:user._id,name:user.username,message:"User logged in successfully"});
     });
     
@@ -56,7 +56,7 @@ export const verifyToken=(req,res,next)=>{
     const token =req.headers.authorization;   
     if(token){
         
-    jwt.verify(token,process.env.MYSECREAT,(err)=>{
+    jwt.verify(token,"process.env.MYSECREAT",(err)=>{
         if(err){
             return res.sendStatus(404);
         }

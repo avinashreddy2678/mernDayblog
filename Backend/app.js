@@ -7,7 +7,7 @@ import { userrouter } from './Router/UserRouter.js';
 import { postrouter } from './Router/PostRouter.js';
 dotenv.config();
 const app = express();
-mongoose.connect(process.env.MONGODB);
+mongoose.connect("mongodb://localhost:27017/BlogDatabase");
 
 app.use(Cors())
 app.use(express.json());
@@ -15,6 +15,6 @@ app.use("/posts",postrouter);
 app.use("/auth",userrouter);
 
 
-app.listen(process.env.PORT||'5001',()=>{
+app.listen(process.env.PORT||'5000',()=>{
         console.log("server running");
 })
