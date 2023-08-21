@@ -10,7 +10,7 @@ dotenv.config();
 router.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
     bcrypt.hash(password, saltRounds, function(err, hash) {
-        console.log(req.body.username);
+        
         const newUser = new UserModal({
             username: username,
             email: email,
@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
             return res.status(201).json({ message: "User password incorrect" });
         }
     
-        console.log("User logged in successfully");
+        
         const token=jwt.sign({id:user._id},process.env.MYSECREAT);
         res.json({token,Userid:user._id,name:user.username,message:"User logged in successfully"});
     });

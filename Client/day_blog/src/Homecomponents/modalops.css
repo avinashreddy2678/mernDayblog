@@ -39,22 +39,26 @@
     margin: 0;
     
 }
-.closebtn{
+.post{
     background: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 235, 235);
     border: none;
     outline: none;
     padding: 0;
+    
 }
 textarea{
     border: none;
     margin-top: 3%;
     width: 100%;
-   height: 240px;
+   height: 200px;
     outline: none;
     resize: none;
     overflow: hidden;
     font-size: x-large;
+}
+.textarea input{
+    font-size: medium;
 }
 .bottom{
     display: flex;
@@ -82,3 +86,14 @@ textarea{
     overflow: hidden;
     font-size: x-large;
 }
+@media only screen and (max-width: 434px) {
+    .modalcontent{
+        color: black;
+        background-color: rgb(255, 255, 255);
+        width: 70%;
+        height: 66%;
+        border-radius:20px ;
+        text-align:justify;
+        padding: 14px;
+    }
+  }

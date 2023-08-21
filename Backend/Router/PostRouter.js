@@ -14,18 +14,19 @@ router.get("/Home",async (req,res)=>{
 router.get("/mypost/:userid",verifyToken,async (req,res)=>{
   try {
     let find=req.params.userid;
-    let response=await PostModal.find({author:find});
+    let response=await PostModal.find({owner:find});
     res.json({response});
   } catch (error) {
     
   }
 })
 router.post("/Home", async (req, res) => {
-  const { title, post,author } = req.body;
+  const { title, post,author,owner } = req.body;
   const newpost = new PostModal({
     title: title,
     post: post,
-    author:author
+    author:author,
+    owner:owner
   });
   await newpost.save();
 });

@@ -42,7 +42,7 @@ function Modalops({
   }, [singlepost]);
 
   const handlePost = () => {
-    postText = [...finalpost, postText];
+    postText = [ postText];
     setfinalpost(postText);
     setpostText("");
     handleclose();
@@ -54,6 +54,7 @@ function Modalops({
       title: postText.title,
       post: postText.post,
       author: window.localStorage.getItem("name"),
+      owner:window.localStorage.getItem("userid"),
     });
   }
   else{
@@ -89,8 +90,8 @@ function Modalops({
                   <p className="para">Start Writing anything</p>
                 </div>
               </div>
-              <div className="right">
-                <button onClick={handlecancel}>close</button>
+              <div className="post">
+                <button type="button" class="btn-close" onClick={handlecancel} aria-label="Close"></button>
               </div>
             </div>
 
@@ -112,8 +113,9 @@ function Modalops({
                   value={postText.post}
                   onChange={handlechange}
                   className="input"
+                  maxLength={100}
                 />
-                <button type="submit">Post</button>
+                <button type="submit" className="btn btn-primary">Post</button>
               </form>
             </div>
           </div>

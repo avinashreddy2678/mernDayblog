@@ -12,6 +12,9 @@ const PostSchema=new mongoose.Schema({
         },
         author:{
             type:String, 
+        },
+        owner:{
+            type:mongoose.Types.ObjectId,
         }
         ,date: {
             type: Date,

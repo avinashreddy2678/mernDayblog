@@ -6,11 +6,13 @@ import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASEURL } from "../helper";
+import Header from "../Header/Header";
 function Home() {
-  let userid = window.localStorage.getItem("name");
+  let userid = window.localStorage.getItem("userid");
   const [mydata, setdata] = useState([]);
   const [open, setopen] = useState(false);
   const [cookies, Setcookiet] = useCookies(["access_token"]);
+
   const [, Setcookie] = useCookies(["name"]);
   let navigate = useNavigate();
 
@@ -20,14 +22,17 @@ function Home() {
         const response = await axios.get(`${BASEURL}/posts/Home`, {
           headers: { authorization: cookies.access_token },
         });
-        setdata(response.data.response);
+        if (mydata.length !== response.data.response.length) {
+          setdata(response.data.response.slice().reverse());
+        }
       } catch (error) {
         navigate("/auth/login");
       }
     };
 
     fetchPosts();
-  }, [mydata]);
+    return () => {};
+  }, []);
 
   const hanldeonclick = () => {
     setopen(true);
@@ -41,76 +46,42 @@ function Home() {
   const handlepost = (postArray) => {
     setdata([...mydata, ...postArray]);
   };
-  const logout = () => {
-    Setcookiet("access_token", "");
-    Setcookie("name", "");
-    window.localStorage.removeItem("userid");
-    window.localStorage.removeItem("name");
-    navigate("/");
-  };
+
 
   return (
     <div className="homebackground">
-    <div className="Homepage-container">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary px-5 ">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/posts/Home">
-            Daily-Journels
-          </a>
+      <div className="Homepage-container">
 
-          <div>
-            <ul class="navbar-nav">
-            <li class="nav-item px-5 py-3" className="nav-link">
-              <Link
-                  to={`/posts/Home`}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <b>Home</b>
-                </Link>
-              </li>
-              <li class="nav-item px-5 py-3" className="nav-link">
-                <Link
-                  to={`/posts/mypost/${userid}`}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <b>Myposts</b>
-                </Link>
-              </li>
-              
-              <li class="nav-item px-5 py-3" className="nav-link">
-                <b onClick={logout} style={{ cursor: "pointer", font: "bold" }}>
-                  logout
-                </b>
-              </li>
-            </ul>
+        {/* Nav bar */}
+      <Header/>
+      
+        <div className="input-box">
+          <div className="inputbox">
+            <input
+              type="none"
+              placeholder="Start a Post"
+              value=""
+              onClick={hanldeonclick}
+            />
           </div>
-        </div>
-      </nav>
-      <div className="input-box">
-        <div className="inputbox">
-          <input
-            type="none"
-            placeholder="Start a Post"
-            value=""
-            onClick={hanldeonclick}
+          <Modalops
+            open={open}
+            handleclose={handleclose}
+            handlecancel={handlecancel}
+            handlePostData={handlepost}
+            home={true}
           />
         </div>
-        <Modalops
-          open={open}
-          handleclose={handleclose}
-          handlecancel={handlecancel}
-          handlePostData={handlepost}
-          home={true}
-        />
-      </div>
-      <div className="posts ">
-        {mydata.map((item) => (
-          <div className="singlepost shadow  bg-#aaa8a7 rounded" >
-            <Post key={item.id} item={item} />
+        <div className="HomePosts">
+          <div className="posts ">
+            {mydata.map((item) => (
+              <div className="singlepost shadow  bg-#aaa8a7 rounded">
+                <Post key={item.id} item={item} setc={" "} />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
