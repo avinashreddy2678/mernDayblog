@@ -6,12 +6,11 @@ import { useCookies } from "react-cookie";
 import { BASEURL } from "../helper";
 import Header from "../Header/Header";
 
-function Myposts({}) {
+function Myposts() {
   const [data, setdata] = useState([]);
 
   let userid = window.localStorage.getItem("userid");
   const [cookies, Setcookiet] = useCookies(["access_token"]);
-  const [, Setcookie] = useCookies(["name"]);
   const [c,setc]=useState();
   let navigate = useNavigate();
   useEffect(() => {

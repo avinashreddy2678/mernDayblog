@@ -3,7 +3,7 @@ import "./Home.css";
 import Post from "./Post";
 import Modalops from "./Modalops";
 import { useCookies } from "react-cookie";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASEURL } from "../helper";
 import Header from "../Header/Header";

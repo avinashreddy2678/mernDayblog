@@ -87,22 +87,23 @@ function Modalops({
                 <div className="name">
                   <h1>
                     <b>Hi ,{name}</b>
-                    <span>
-                      <select
-                        name="Public"
-                        className="selectbtn"
-                        onChange={(e) => {
-                          setselect(e.target.value);
-                        }}
-                      >
-                        <option value="public">public</option>
-                        <option value="private">private</option>
-                      </select>
-                    </span>
                   </h1>
+
                   <p className="para">Start Writing anything</p>
                 </div>
               </div>
+              <span className="select">
+                <select
+                  name="Public"
+                  className="selectbtn "
+                  onChange={(e) => {
+                    setselect(e.target.value);
+                  }}
+                >
+                  <option value="public">public</option>
+                  <option value="private">private</option>
+                </select>
+              </span>
               <div className="post">
                 <button
                   type="button"

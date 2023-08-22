@@ -39,6 +39,10 @@
     margin: 0;
     
 }
+.selectbtn{
+    padding: 2px 2px;
+    
+}
 .post{
     background: none;
     color: rgb(255, 235, 235);

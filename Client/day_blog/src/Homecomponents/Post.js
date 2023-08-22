@@ -23,6 +23,7 @@ function Post({ item, mypost,setc }) {
           headers: { authorization: cookies.access_token },
         });
         setc(postid);
+        window.localStorage.setItem("postid",postid)
       } catch (error) {}
     };
     fetchPosts();

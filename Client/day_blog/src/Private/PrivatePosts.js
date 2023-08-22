@@ -2,18 +2,18 @@
 import Header from '../Header/Header'
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
 import {  useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { BASEURL } from "../helper";
 import Post from '../Homecomponents/Post';
 
 
+
 function PrivatePosts() {
   const [data, setdata] = useState([]);
   let userid = window.localStorage.getItem("userid");
   const [cookies, Setcookiet] = useCookies(["access_token"]);
-  const [c,setc]=useState();
+
   let navigate = useNavigate();
   useEffect(() => {
     const fetchdata = async () => {
@@ -32,27 +32,29 @@ function PrivatePosts() {
     return()=>{
       
     }
-  }, [c]);
+  }, []);
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="HomePosts">
-      <div className="posts">
-       {
-        data.map((single)=>(
-          single.select==="private"?
-          <div
-          className="singlepost shadow  bg-#aaa8a7 rounded" key={single.id}>
-          <Post item={single}/>
+        <div className="posts">
+          {data.length === 0 ? (
+            <h1>No  Private Posts</h1>
+          ) : (
+            data.map((single) =>
+              single.select === "private" ? (
+                <div className="singlepost shadow bg-aaa8a7 rounded" key={single.id}>
+                  <Post item={single} />
+                </div>
+              ) : (
+                null
+              )
+            )
+          )}
         </div>
-            :" "
-            
-        ))
-       }
-       </div>
-       </div>
+      </div>
     </div>
-  )
-}
+  );
+              }  
 
 export default PrivatePosts
