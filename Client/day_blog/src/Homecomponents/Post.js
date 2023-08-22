@@ -56,7 +56,10 @@ function Post({ item, mypost,setc }) {
 
   return (
     <>
+    
       <>
+      
+        
         <h1>{item.title}</h1>
         <p>{item.post}</p>
         <h6 style={{ float: "right", marginRight: "10%" }}>-{item.author}</h6>
@@ -77,7 +80,11 @@ function Post({ item, mypost,setc }) {
           singlepost={singlepost}
 
         />
+        
+
       </>
+     
+      
     </>
   );
 }

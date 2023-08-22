@@ -3,17 +3,17 @@ import "./Home.css";
 import Post from "./Post";
 import Modalops from "./Modalops";
 import { useCookies } from "react-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASEURL } from "../helper";
 import Header from "../Header/Header";
 function Home() {
-  let userid = window.localStorage.getItem("userid");
   const [mydata, setdata] = useState([]);
   const [open, setopen] = useState(false);
+  const [change,setchange]=useState(" ")
   const [cookies, Setcookiet] = useCookies(["access_token"]);
 
-  const [, Setcookie] = useCookies(["name"]);
+  
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function Home() {
 
     fetchPosts();
     return () => {};
-  }, []);
+  }, [change]);
 
   const hanldeonclick = () => {
     setopen(true);
@@ -44,7 +44,7 @@ function Home() {
     setopen(false);
   };
   const handlepost = (postArray) => {
-    setdata([...mydata, ...postArray]);
+    setchange([ ...postArray]);
   };
 
 
@@ -75,9 +75,12 @@ function Home() {
         <div className="HomePosts">
           <div className="posts ">
             {mydata.map((item) => (
+              item.select!=="private" ?
               <div className="singlepost shadow  bg-#aaa8a7 rounded">
                 <Post key={item.id} item={item} setc={" "} />
               </div>
+              :
+              " "
             ))}
           </div>
         </div>

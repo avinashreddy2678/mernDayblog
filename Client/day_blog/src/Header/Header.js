@@ -42,11 +42,11 @@ function Header() {
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid d-flex">
-            <div>
-        <a class="navbar-brand" href="/posts/Home">
+          <div>
+            <a class="navbar-brand" href="/posts/Home">
               Daily-Journels
             </a>
-            </div>
+          </div>
           <button
             class="navbar-toggler "
             type="button"
@@ -71,7 +71,21 @@ function Header() {
                   <b>Home</b>
                 </Link>
               </li>
-              <li class="nav-item px-5 py-3" className="nav-link nav-item px-5 py-3">
+              <li
+                class="nav-item px-5 py-3"
+                className="nav-link nav-item px-5 py-3"
+              >
+                <Link
+                  to={`/posts/private`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <b>Private</b>
+                </Link>
+              </li>
+              <li
+                class="nav-item px-5 py-3"
+                className="nav-link nav-item px-5 py-3"
+              >
                 <Link
                   to={`/posts/mypost/${userid}`}
                   style={{ textDecoration: "none", color: "black" }}
@@ -88,7 +102,6 @@ function Header() {
           </div>
         </div>
       </nav>
-      
     </div>
   );
 }

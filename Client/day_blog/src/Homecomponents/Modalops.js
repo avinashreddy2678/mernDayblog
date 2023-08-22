@@ -11,10 +11,8 @@ function Modalops({
   handlePostData,
   home,
   singlepost,
-})
-
-// let id = window.localStorage.getItem("postid");
- {
+}) {
+  // let id = window.localStorage.getItem("postid");
   let name = window.localStorage.getItem("name");
   let [postText, setpostText] = useState([
     {
@@ -22,6 +20,10 @@ function Modalops({
       post: "",
     },
   ]);
+
+  // for selcting pivate or public
+  const [select, setselect] = useState("public");
+
   let [finalpost, setfinalpost] = useState([]);
   const handlechange = (e) => {
     const { name, value } = e.target;
@@ -31,9 +33,9 @@ function Modalops({
     }));
   };
   // console.log(id);
-  
+
   useEffect(() => {
-    if (!home&&singlepost!==undefined) {
+    if (!home && singlepost !== undefined) {
       setpostText({
         title: singlepost.title,
         post: singlepost.post,
@@ -42,33 +44,32 @@ function Modalops({
   }, [singlepost]);
 
   const handlePost = () => {
-    postText = [ postText];
+    postText = [postText];
     setfinalpost(postText);
     setpostText("");
     handleclose();
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-    if(home){
-    axios.post(`${BASEURL}/posts/Home`, {
-      title: postText.title,
-      post: postText.post,
-      author: window.localStorage.getItem("name"),
-      owner:window.localStorage.getItem("userid"),
-    });
-  }
-  else{
-    let myid= window.localStorage.getItem("postid");
-    axios.patch(`${BASEURL}/posts/update/${myid}`, {
-      title: postText.title,
-      post: postText.post,
-      author: window.localStorage.getItem("name"),
-    });
-  }
+    if (home) {
+      axios.post(`${BASEURL}/posts/Home`, {
+        title: postText.title,
+        post: postText.post,
+        select: select,
+        author: window.localStorage.getItem("name"),
+        owner: window.localStorage.getItem("userid"),
+      });
+    } else {
+      let myid = window.localStorage.getItem("postid");
+      axios.patch(`${BASEURL}/posts/update/${myid}`, {
+        title: postText.title,
+        post: postText.post,
+        author: window.localStorage.getItem("name"),
+      });
+    }
     handlePost();
     handleclose();
   };
-
 
   useEffect(() => handlePostData(finalpost), [finalpost]);
   return (
@@ -86,12 +87,29 @@ function Modalops({
                 <div className="name">
                   <h1>
                     <b>Hi ,{name}</b>
+                    <span>
+                      <select
+                        name="Public"
+                        className="selectbtn"
+                        onChange={(e) => {
+                          setselect(e.target.value);
+                        }}
+                      >
+                        <option value="public">public</option>
+                        <option value="private">private</option>
+                      </select>
+                    </span>
                   </h1>
                   <p className="para">Start Writing anything</p>
                 </div>
               </div>
               <div className="post">
-                <button type="button" class="btn-close" onClick={handlecancel} aria-label="Close"></button>
+                <button
+                  type="button"
+                  class="btn-close"
+                  onClick={handlecancel}
+                  aria-label="Close"
+                ></button>
               </div>
             </div>
 
@@ -115,7 +133,9 @@ function Modalops({
                   className="input"
                   maxLength={100}
                 />
-                <button type="submit" className="btn btn-primary">Post</button>
+                <button type="submit" className="btn btn-primary">
+                  Post
+                </button>
               </form>
             </div>
           </div>

@@ -21,10 +21,11 @@ router.get("/mypost/:userid",verifyToken,async (req,res)=>{
   }
 })
 router.post("/Home", async (req, res) => {
-  const { title, post,author,owner } = req.body;
+  const { title, post,select,author,owner } = req.body;
   const newpost = new PostModal({
     title: title,
     post: post,
+    select:select,
     author:author,
     owner:owner
   });

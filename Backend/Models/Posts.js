@@ -10,6 +10,10 @@ const PostSchema=new mongoose.Schema({
             type:String,
             
         },
+        select:{
+            type:String,
+        },
+        
         author:{
             type:String, 
         },
